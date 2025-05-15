@@ -41,24 +41,23 @@ public:
                 cout << "\nDuplicate number not allowed" << endl;
                 return;
             }
-        
 
-        // step 4: newnode.next = start
-        newNode->next = START;
+            // step 4: newnode.next = start
+            newNode->next = START;
 
-        // Step 5: START.prev = newNode
-        if (START != NULL)
-            START->prev = newNode;
+            // Step 5: START.prev = newNode
+            if (START != NULL)
+                START->prev = newNode;
 
-        // Step 6
-        newNode->prev = NULL;
+            // Step 6
+            newNode->prev = NULL;
 
-        // Step 7
-        START = newNode;
-        return;
+            // Step 7
+            START = newNode;
+            return;
         }
 
-    // insert in between node
+        // insert in between node
         // step 8: Locate position for insertion
         Node *current = START;
         while (current->next != NULL && current->next->noMhs < nim)
@@ -72,61 +71,87 @@ public:
             return;
         }
 
-           //step 9: inser between current and current->next
+        // step 9: inser between current and current->next
         newNode->next = current->next; // step 9a newNode.next =
         newNode->prev = current;       // step 9b newNode.prev =
 
-        //insert list node
+        // insert list node
         if (current->next != NULL)
             current->next->prev = newNode; // Step 9c: current.next.prev
 
-        current->next = newNode; //step 9d: current.next = newNode
+        current->next = newNode; // step 9d: current.next = newNode
     }
-}
+
 
 void hapus()
+{
+    if (START == NULL)
     {
-        if (START == NULL)
-        {
-            cout << "\nList is empty" << endl;
-            return;
-        }
-
-        cout << "\nEnter the roll number of the student whose record is to be deleted: ";
-        int rollNo;
-        cin >> rollNo;
-
-        Node *current = START;
-          
-        // Step 1: Traverse the list to find the node
-        while (current != NULL && current->noMhs != rollNo)
-            current = current->next;
-
-        if (current == NULL)
-        {
-            cout << "Record not found" << endl;
-            return;
-        }
-
-        //Step 2 if node is at the beginning
-        if (current == START)
-        {
-            START = current->next; // step 2a: START = START.next
-
-            if (START != NULL)
-                START->prev = NULL; // Step 2b: START.prev = NULL
-        }
-        else
-        {
-            //Step 3: Link previous node to next of current
-            current->prev->next = current->next;
-
-            //Step 4: if current is not the last node
-            if (current->next != NULL)
-                current->next->prev = current->prev;
-        }
-
-        //Step 5: Delete the node
-        delete current;
-        cout << "Record with roll number " << rollNo << "deleted" << endl;
+        cout << "\nList is empty" << endl;
+        return;
     }
+
+    cout << "\nEnter the roll number of the student whose record is to be deleted: ";
+    int rollNo;
+    cin >> rollNo;
+
+    Node *current = START;
+
+    // Step 1: Traverse the list to find the node
+    while (current != NULL && current->noMhs != rollNo)
+        current = current->next;
+
+    if (current == NULL)
+    {
+        cout << "Record not found" << endl;
+        return;
+    }
+
+    // Step 2 if node is at the beginning
+    if (current == START)
+    {
+        START = current->next; // step 2a: START = START.next
+
+        if (START != NULL)
+            START->prev = NULL; // Step 2b: START.prev = NULL
+    }
+    else
+    {
+        // Step 3: Link previous node to next of current
+        current->prev->next = current->next;
+
+        // Step 4: if current is not the last node
+        if (current->next != NULL)
+            current->next->prev = current->prev;
+    }
+
+    // Step 5: Delete the node
+    delete current;
+    cout << "Record with roll number " << rollNo << "deleted" << endl;
+}
+
+void traverse()
+        {
+            if (START == NULL)
+            {
+                cout << "\nList is empty" << endl;
+                return;
+            }
+
+            // Step 1: Mark first node as currentNode
+            Node *currentNode = START;
+
+            // Step 2: Repeat untill currentNode == NULL
+            cout << "\nRecords in ascending order of roll number are:\n";
+            int i = 0;
+            while (currentNode != NULL)
+            {
+
+                cout << i + 1 << "." << currentNode->noMhs << " " << endl;
+
+                //Step 3: Move to next node
+                currentNode = currentNode->next;
+                i++;
+            }
+        }
+ };
