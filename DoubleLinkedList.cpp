@@ -21,7 +21,7 @@ public:
         START = NULL;
     }
 
-        void addNode()
+    void addNode()
     {
         int nim;
         cout << "\nEnter the roll number of the student: ";
@@ -30,10 +30,10 @@ public:
         // Step 1: Allocate Memory for new node
         Node *newNode = new Node();
 
-         // Step 2: Assign value to the data fields
+        // Step 2: Assign value to the data fields
         newNode->noMhs = nim;
 
-        //Step 3: Insert at beginning if list is empty or nim is 
+        // Step 3: Insert at beginning if list is empty or nim is
         if (START == NULL || nim <= START->noMhs)
         {
             if (START != NULL && nim == START->noMhs)
@@ -43,12 +43,18 @@ public:
             }
         }
 
-        //step 4: newnode.next = start
-            newNode->next = START;
-        
-        //Step 5: START.prev = newNode
-            if (START != NULL)
-                START->prev = newNode;
+        // step 4: newnode.next = start
+        newNode->next = START;
 
+        // Step 5: START.prev = newNode
+        if (START != NULL)
+            START->prev = newNode;
+
+        // Step 6
+        newNode->prev = NULL;
+
+        // Step 7
+        START = newNode;
+        return;
     }
 };
