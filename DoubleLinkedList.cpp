@@ -42,5 +42,9 @@ public:
                 return;
             }
         }
+
+        //step 4: newnode.next = start
+            newNode->next = START;
+
     }
 };
