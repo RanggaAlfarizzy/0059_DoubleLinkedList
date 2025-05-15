@@ -41,7 +41,7 @@ public:
                 cout << "\nDuplicate number not allowed" << endl;
                 return;
             }
-        }
+        
 
         // step 4: newnode.next = start
         newNode->next = START;
@@ -56,7 +56,7 @@ public:
         // Step 7
         START = newNode;
         return;
-    }
+        }
 
     // insert in between node
         // step 8: Locate position for insertion
@@ -71,4 +71,15 @@ public:
             cout << "\nDuplicate roll number not allowed" << endl;
             return;
         }
+
+           //step 9: inser between current and current->next
+        newNode->next = current->next; // step 9a newNode.next =
+        newNode->prev = current;       // step 9b newNode.prev =
+
+        //insert list node
+        if (current->next != NULL)
+            current->next->prev = newNode; // Step 9c: current.next.prev
+
+        current->next = newNode; //step 9d: current.next = newNode
+    }
 };
